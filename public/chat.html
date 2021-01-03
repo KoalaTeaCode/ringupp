@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html style="height: -webkit-fill-available;">
+  <head>
+    <!-- site-wide meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      Ring Upp
+    </title>
+    <meta property="og:url" content="https://ringupp.com/" />
+
+    <!-- site-wide links -->
+    <link rel="stylesheet" href="../css/tailwind.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
+    <link rel="manifest" href="/favicon_io/site.webmanifest" />
+
+    <!-- page meta -->
+    <meta property="og:title" content="Join your friends call - Ring Upp" />
+    <meta property="og:description" content="Click the link to join this call using Ring Upp" />
+    <meta property="og:image" content="https://ringupp.com/images/preview.png" />
+
+    <!-- page links -->
+    <link rel="stylesheet" href="../css/snackbar.css" />
+    <!-- page scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="/js/jquery.ui.touch-punch.js"></script>
+  </head>
+  <body
+    id="body"
+    class="h-screen flex flex-col bg-gray-800 m-0 p-0 overflow-hidden justify-center items-center"
+    style="height: -webkit-fill-available;"
+  >
+    <header id="header" class="text-gray-700 body-font absolute left-0 top-0 h-14 px-4 py-1 z-10">
+      <a class="flex title-font font-medium items-center text-white h-full" href="/">
+        <img class="h-full" src="../images/ring-upp-logo-full.svg" alt="Video call between friends" />
+        <span class="ml-2 text-xl">Ring Upp</span>
+      </a>
+    </header>
+    <!-- Video Container -->
+    <div class="max-h-screen w-full flex flex-col md:flex-row justify-center items-center content-center">
+      <div id="remote-video-1-container" class="relative w-full h-full flex-1 min-w-0 min-h-0 hidden">
+        <button
+          class="absolute top-0 right-0 h-12 w-12 flex justify-center items-center rounded-xl hover:bg-gray-300"
+          onclick="{pinVideo1()}"
+          alt="Pin video 1"
+        >
+          <svg width="30" height="30" viewBox="0 0 245 318" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M235.559 213.902C235.559 213.947 235.56 213.993 235.56 214.038V214.126H131.837C126.867 214.126 122.837 218.155 122.837 223.126V307.991C122.837 308.037 122.83 308.058 122.824 308.073C122.815 308.093 122.798 308.121 122.771 308.148C122.743 308.176 122.715 308.193 122.695 308.202C122.68 308.208 122.659 308.215 122.614 308.215C122.565 308.215 122.542 308.207 122.528 308.201C122.508 308.193 122.482 308.177 122.456 308.15C122.429 308.124 122.413 308.098 122.404 308.077C122.401 308.069 122.397 308.058 122.394 308.041C122.392 308.028 122.39 308.012 122.39 307.991V223.126C122.39 218.155 118.361 214.126 113.39 214.126H9.65625V213.902C9.65625 199.142 23.0075 183.106 54.6137 172.08C57.8455 170.952 60.1581 168.089 60.5805 164.693L75.7005 43.0986C76.2649 38.5593 73.3347 34.3187 68.8892 33.2412C55.4036 29.9727 45.8236 25.7696 39.8173 21.2616C33.951 16.8585 32.1953 12.78 32.1953 9.223V9H213.016V9.223C213.016 12.7821 211.261 16.8602 205.398 21.2618C199.394 25.7691 189.816 29.9721 176.327 33.2412C171.881 34.3186 168.95 38.5598 169.515 43.0993L184.647 164.705C185.07 168.102 187.383 170.966 190.616 172.092C222.207 183.106 235.559 199.141 235.559 213.902Z"
+              stroke="white"
+              stroke-width="18"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <video
+          id="remote-video-1"
+          autoplay
+          playsinline
+          class="w-full h-full flex-1 min-w-0 min-h-0 pointer-events-none"
+        ></video>
+      </div>
+      <div id="remote-video-2-container" class="relative w-full h-full flex-1 min-w-0 min-h-0 hidden">
+        <button
+          class="absolute top-0 right-0 h-12 w-12 flex justify-center items-center rounded-xl"
+          onclick="{pinVideo2()}"
+          alt="Pin video 2"
+        >
+          <svg width="30" height="30" viewBox="0 0 245 318" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M235.559 213.902C235.559 213.947 235.56 213.993 235.56 214.038V214.126H131.837C126.867 214.126 122.837 218.155 122.837 223.126V307.991C122.837 308.037 122.83 308.058 122.824 308.073C122.815 308.093 122.798 308.121 122.771 308.148C122.743 308.176 122.715 308.193 122.695 308.202C122.68 308.208 122.659 308.215 122.614 308.215C122.565 308.215 122.542 308.207 122.528 308.201C122.508 308.193 122.482 308.177 122.456 308.15C122.429 308.124 122.413 308.098 122.404 308.077C122.401 308.069 122.397 308.058 122.394 308.041C122.392 308.028 122.39 308.012 122.39 307.991V223.126C122.39 218.155 118.361 214.126 113.39 214.126H9.65625V213.902C9.65625 199.142 23.0075 183.106 54.6137 172.08C57.8455 170.952 60.1581 168.089 60.5805 164.693L75.7005 43.0986C76.2649 38.5593 73.3347 34.3187 68.8892 33.2412C55.4036 29.9727 45.8236 25.7696 39.8173 21.2616C33.951 16.8585 32.1953 12.78 32.1953 9.223V9H213.016V9.223C213.016 12.7821 211.261 16.8602 205.398 21.2618C199.394 25.7691 189.816 29.9721 176.327 33.2412C171.881 34.3186 168.95 38.5598 169.515 43.0993L184.647 164.705C185.07 168.102 187.383 170.966 190.616 172.092C222.207 183.106 235.559 199.141 235.559 213.902Z"
+              stroke="white"
+              stroke-width="18"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <video
+          id="remote-video-2"
+          autoplay
+          playsinline
+          class="w-full h-full flex-1 min-w-0 min-h-0 pointer-events-none"
+        ></video>
+      </div>
+
+      <video
+        id="local-video"
+        autoplay
+        muted
+        playsinline
+        class="w-full h-full flex-1 min-w-0 min-h-0 pointer-events-none"
+      ></video>
+    </div>
+
+    <!-- Bottom Toolbox -->
+    <div
+      id="toolbox"
+      class="flex justify-center items-center h-20 absolute w-full bg-gray-100 bottom-0 space-x-6 sm:space-x-12"
+    >
+      <!-- mute mic -->
+      <div class="flex h-12 justify-center items-center w-12">
+        <button
+          class="hoverButton h-full w-full bg-primary-200 hover:bg-primary-300 flex justify-center items-center rounded-full tooltip"
+          onclick="{muteMicrophone()}"
+        >
+          <span
+            id="mic-tooltip"
+            class="tooltip-text ring-2 ring-primary-300 bg-gray-100 text-black px-2 py-1 rounded-lg text-lg -mt-12 shadow-lg"
+          >
+            Mute
+          </span>
+          <svg
+            id="mic-on"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-mic"
+            alt="microphone on"
+          >
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+          <svg
+            id="mic-off"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-mic-off hidden"
+            alt="microphone off"
+          >
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path>
+            <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- pause video -->
+      <div class="flex h-12 justify-center items-center w-12">
+        <button
+          class="hoverButton h-full w-full bg-primary-200 hover:bg-primary-300 flex justify-center items-center rounded-full tooltip"
+          onclick="{pauseVideo()}"
+        >
+          <span
+            class="tooltip-text ring-2 ring-primary-300 bg-gray-100 text-black px-2 py-1 rounded-lg text-lg -mt-12 shadow-lg"
+            id="video-tooltip"
+          >
+            Pause Video
+          </span>
+          <svg
+            id="video-on"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-video"
+            alt="video on"
+          >
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+          <svg
+            id="video-off"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-video-off hidden"
+            alt="video off"
+          >
+            <path
+              d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"
+            ></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- screenshare -->
+      <div class="flex h-12 justify-center items-center w-12" id="screenshare-button-container">
+        <button
+          class="hoverButton h-full w-full bg-primary-200 hover:bg-primary-300 flex justify-center items-center rounded-full tooltip"
+          onclick="{screenshare()}"
+        >
+          <span
+            class="tooltip-text ring-2 ring-primary-300 bg-gray-100 text-black px-2 py-1 rounded-lg text-lg -mt-12 shadow-lg"
+            id="screenshare-tooltip"
+          >
+            Share Screen
+          </span>
+          <svg
+            id="screenshare-on"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-monitor"
+            alt="Share Screen"
+          >
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          <svg
+            id="screenshare-off"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-video hidden"
+            alt="Share Camera"
+          >
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <!-- more button -->
+      <div class="flex h-12 justify-center items-center w-12">
+        <button
+          class="hoverButton h-full w-full bg-primary-200 hover:bg-primary-300 flex justify-center items-center rounded-full tooltip"
+          onclick="{toggleSettingsModal()}"
+        >
+          <span
+            class="tooltip-text ring-2 ring-primary-300 bg-gray-100 text-black px-2 py-1 rounded-lg text-lg -mt-12 shadow-lg"
+            id="screenshare-tooltip"
+          >
+            More Button
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-more-vertical"
+            alt="More Button"
+          >
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="12" cy="5" r="1"></circle>
+            <circle cx="12" cy="19" r="1"></circle>
+          </svg>
+        </button>
+      </div>
+
+      <!-- <div class="buttonContainer">
+          <button class="hoverButton" id="share-button" onclick="{swap()}">
+            <i id="swap-icon" class="fas fa-desktop fa-xs"></i>
+          </button>
+          <div class="HoverState" id="swap-text">Share Screen</div>
+        </div> -->
+
+      <!-- <div class="buttonContainer">
+          <button class="hoverButton" onclick="{toggleChat()}">
+            <i id="chat-icon" class="fas fa-comment fa-xs"></i>
+          </button>
+          <div class="HoverState" id="chat-text">Show Chat</div>
+        </div> -->
+
+      <!-- <div class="buttonContainer">
+          <button
+            class="hoverButton"
+            id="pip-button"
+            onclick="{togglePictureInPicture()}"
+          >
+            <i class="fas fa-external-link-alt fa-xs"></i>
+          </button>
+          <div class="HoverState" id="pip-text">Toggle Picture in Picture</div>
+        </div> -->
+
+      <!-- <div class="buttonContainer">
+          <button class="hoverButton" onclick="{requestToggleCaptions()}">
+            <i class="fas fa-closed-captioning fa-xs"></i>
+          </button>
+          <div class="HoverState" id="caption-button-text">
+            Start Live Caption
+          </div>
+        </div> -->
+
+      <!-- end call -->
+      <div class="flex h-12 justify-center items-center w-12">
+        <button
+          class="hoverButton h-full w-full bg-primary-200 hover:bg-primary-300 flex justify-center items-center rounded-full tooltip"
+          onclick="{window.location.href = '/newcall'}"
+        >
+          <span
+            class="tooltip-text ring-2 ring-primary-300 bg-gray-100 text-black px-2 py-1 rounded-lg text-lg -mt-12 shadow-lg"
+          >
+            End Call
+          </span>
+          <svg
+            id="phone-off"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-phone-off"
+            alt="end call"
+          >
+            <path
+              d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"
+            ></path>
+            <line x1="23" y1="1" x2="1" y2="23"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- <div id="entire-chat">
+        <div id="chat-zone">
+          <div class="chat-messages"></div>
+        </div>
+        <form class="compose">
+          <input type="text" placeholder="Type a message" />
+        </form>
+      </div> -->
+
+    <!-- <div class="multi-button">
+        <div class="buttonContainer">
+          <button class="hoverButton" onclick="{muteMicrophone()}">
+            <i id="mic-icon" class="fas fa-microphone fa-xs"></i>
+          </button>
+          <div class="HoverState" id="mic-text">Mute</div>
+        </div>
+  
+        <div class="buttonContainer">
+          <button class="hoverButton" onclick="{pauseVideo()}">
+            <i class="fas fa-video fa-xs" id="video-icon"></i>
+          </button>
+          <div class="HoverState" id="video-text">Pause Video</div>
+        </div>
+  
+        <div class="buttonContainer">
+          <button class="hoverButton" id="share-button" onclick="{swap()}">
+            <i id="swap-icon" class="fas fa-desktop fa-xs"></i>
+          </button>
+          <div class="HoverState" id="swap-text">Share Screen</div>
+        </div>
+  
+        <div class="buttonContainer">
+          <button class="hoverButton" onclick="{toggleChat()}">
+            <i id="chat-icon" class="fas fa-comment fa-xs"></i>
+          </button>
+          <div class="HoverState" id="chat-text">Show Chat</div>
+        </div>
+  
+        <div class="buttonContainer">
+          <button
+            class="hoverButton"
+            id="pip-button"
+            onclick="{togglePictureInPicture()}"
+          >
+            <i class="fas fa-external-link-alt fa-xs"></i>
+          </button>
+          <div class="HoverState" id="pip-text">Toggle Picture in Picture</div>
+        </div>
+  
+        <div class="buttonContainer">
+          <button class="hoverButton" onclick="{requestToggleCaptions()}">
+            <i class="fas fa-closed-captioning fa-xs"></i>
+          </button>
+          <div class="HoverState" id="caption-button-text">
+            Start Live Caption
+          </div>
+        </div>
+  
+        <div class="buttonContainer">
+          <button
+            class="hoverButton"
+            onclick="{window.location.href = '/newcall'}"
+          >
+            <i class="fas fa-phone-slash fa-xs"></i>
+          </button>
+          <div class="HoverState">End Call</div>
+        </div>
+      </div> -->
+    <!-- Input select modal -->
+    <div id="input-select-modal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!--
+            Background overlay, show/hide based on modal state.
+      
+            Entering: "ease-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+          <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <!--
+            Modal panel, show/hide based on modal state.
+      
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+        <div
+          class="inline-block bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-auto align-middle max-w-lg w-full"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-headline"
+        >
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="sm:flex sm:items-start flex-col">
+              <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                <h3 class="text-4xl leading-6 font-medium text-gray-900" id="modal-headline">Settings</h3>
+                <div class="mt-6 flex flex-col space-y-8">
+                  <!-- <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p> -->
+                  <div class="">
+                    <div class="text-2xl font-semibold">
+                      Video Input
+                    </div>
+                    <select id="availableVideoInput" class="w-full mt-2 text-lg h-10 bg-gray-200">
+                      Video Input
+                    </select>
+                  </div>
+                  <div class="">
+                    <div class="text-2xl font-semibold">
+                      Audio Input
+                    </div>
+                    <select id="availableAudioInput" class="w-full mt-2 text-lg h-10 bg-gray-200">
+                      Audio Input
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="py-3 sm:flex sm:flex-row-reverse w-full mt-3">
+                <button
+                  id="input-select-modal-close"
+                  type="button"
+                  class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-md"
+                  onclick="{toggleSettingsModal()}"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/snackbar.js"></script>
+    <!-- <script src="../js/autolink.js"></script> -->
+    <script src="https://cdn.rawgit.com/muaz-khan/DetectRTC/master/DetectRTC.js"></script>
+    <script id="" src="../js/cookiehelpers.js"></script>
+    <script id="chatJS" src="../js/chat.js"></script>
+    <script src="../js/mediadevices.js"></script>
+  </body>
+</html>

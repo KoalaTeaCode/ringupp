@@ -1,0 +1,36 @@
+{
+  "name": "video-chat2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "build:css": "postcss public/css/index.css -o public/css/tailwind.css",
+    "watch:css": "postcss public/css/index.css -o public/css/tailwind.css -w",
+    "start:dev": "npm run watch:css & nodemon server.js",
+    "start": "npm run build:css && nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "See License",
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^3.1.3",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9.8.6",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "heroku-ssl-redirect": "0.0.4",
+    "nodemon": "^2.0.6",
+    "postcss": "^7.0.35",
+    "postcss-cli": "^7.1.2",
+    "postcss-import": "^12.0.1",
+    "sentencer": "^0.2.1",
+    "socket.io": "^2.2.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "twilio": "^3.34.0"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.1",
+    "prettier": "2.0.2"
+  }
+}

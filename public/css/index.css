@@ -1,0 +1,19 @@
+.tooltip .tooltip-text {
+  @apply invisible absolute z-50 inline-block;
+}
+
+.tooltip:hover .tooltip-text {
+  @apply md:visible;
+}
+
+.snackbar-container {
+  @apply flex flex-col sm:flex-row space-y-2 rounded-lg;
+}
+
+.snackbar-container .action {
+  @apply bg-primary-500 hover:bg-primary-700;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
