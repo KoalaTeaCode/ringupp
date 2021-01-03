@@ -15,17 +15,17 @@ const url = require('url');
 
 const env = process.env.NODE_ENV || 'dev';
 
-if (env === 'dev') {
-  // Live reload
-  const livereload = require('livereload');
+// if (env === 'dev') {
+//   // Live reload
+//   const livereload = require('livereload');
 
-  const liveReloadServer = livereload.createServer();
-  liveReloadServer.watch(path.join(__dirname, 'public'));
+//   const liveReloadServer = livereload.createServer();
+//   liveReloadServer.watch(path.join(__dirname, 'public'));
 
-  const connectLivereload = require('connect-livereload');
+//   const connectLivereload = require('connect-livereload');
 
-  app.use(connectLivereload());
-}
+//   app.use(connectLivereload());
+// }
 
 // Remove trailing slashes in url
 app.use(function (req, res, next) {
